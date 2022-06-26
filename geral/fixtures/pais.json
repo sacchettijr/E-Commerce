@@ -1,0 +1,3 @@
+[
+    {"model":"geral.Pais", "pk": 1, "fields": {"sigla": "BR","nome": "Brasil"}}
+]
