@@ -6,6 +6,7 @@ usuario/migrations/0003_usuarioendereco.py
 
 # Python
 __pycache__/
+*.pyc
 
 # Configuração local
 local_settings.py
@@ -13,10 +14,13 @@ local_settings.py
 # Banco de dados
 db.sqlite3
 db.sqlite3-journal
+media/
 
 # Editores
 .idea/
+*.idea
 .vscode/
+.DS_Store
 
 # Maquinas virtuais
 venv/

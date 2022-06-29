@@ -2,14 +2,16 @@
 
 import os
 from pathlib import Path
+from decouple import config
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-SECRET_KEY = 'django-insecure-mf3wn(_7x0n#-%rz(gfe1*@$sbkb1^gefj3-3wea&xj6m04gm^'
-
-DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+	'127.0.0.1'
+]
 
 INSTALLED_APPS = [
 	# DJANGO
@@ -58,6 +60,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'zSetup.wsgi.application'
 
+'''
+default_db_url = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+DATABASES = {
+	'default': config('DATABASE_URL', default=default_db_url, cast=dburl),
+}
+'''
+
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.sqlite3',
@@ -77,11 +86,8 @@ TIME_ZONE = 'America/Manaus'
 USE_I18N = True
 USE_TZ = False
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-	BASE_DIR / "static",
-	'/var/www/static/',
-]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
 
 MEDIA_ROOT = 'media'
 MEDIA_URL = '/media/'
