@@ -1,16 +1,17 @@
 # Django 4.0.5.
-
 import os
 from pathlib import Path
 from decouple import config
-
+from dj_database_url import parse as dburl
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = [
-	'127.0.0.1'
+	'127.0.0.1',
+	'https://naelstore.herokuapp.com/',
+	'https://git.heroku.com/naelstore.git',
 ]
 
 INSTALLED_APPS = [
@@ -60,18 +61,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'zSetup.wsgi.application'
 
-'''
+
 default_db_url = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 DATABASES = {
 	'default': config('DATABASE_URL', default=default_db_url, cast=dburl),
-}
-'''
-
-DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.sqlite3',
-		'NAME': BASE_DIR / 'db.sqlite3',
-	}
 }
 
 AUTH_PASSWORD_VALIDATORS = [
