@@ -41,7 +41,7 @@ MIDDLEWARE = [
 	'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'zSetup.urls'
+ROOT_URLCONF = 'kathrynestore.urls'
 
 TEMPLATES = [
 	{
@@ -59,7 +59,7 @@ TEMPLATES = [
 	},
 ]
 
-WSGI_APPLICATION = 'zSetup.wsgi.application'
+WSGI_APPLICATION = 'kathrynestore.wsgi.application'
 
 
 default_db_url = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
