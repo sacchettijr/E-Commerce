@@ -1,1 +1,1 @@
-web: gunicorn e-commerce.wsgi --log-file -
+web: gunicorn kathrynestore.wsgi --log-file -
