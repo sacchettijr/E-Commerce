@@ -12,18 +12,21 @@ class UsuarioEnderecoInline(admin.TabularInline):
 class UsuarioAdmin(auth_admin.UserAdmin):
 	model = Usuario
 	list_display = [
-		'username', 'telefone', 'email'
+		'email', 'telefone'
 	]
+	
+	ordering = ['pk']
+	
 	add_form = UsuarioCreationForm
 	add_fieldsets = (
 		('Usuário', {
 			'fields': {
-				'username', ('password1', 'password2')
+				'email', ('password1', 'password2')
 			}
 		}),
 		("Informações básicas", {
 			"fields": (
-				'nome', 'cpf_cnpj', 'data_nascimento', 'sexo', 'telefone', 'email'
+				'nome', 'cpf_cnpj', 'data_nascimento', 'sexo', 'telefone'
 			),
 		}),
 		("Permissões", {
@@ -33,16 +36,17 @@ class UsuarioAdmin(auth_admin.UserAdmin):
 			),
 		}),
 	)
+	
 	form = UsuarioChangeForm
 	fieldsets = (
 		("Usuário", {
 			"fields": (
-				'username', 'password'
+				'email', 'password'
 			),
 		}),
 		("Informações básicas", {
 			"fields": (
-				'nome', 'cpf_cnpj', 'data_nascimento', 'sexo', 'telefone', 'email'
+				'nome', 'cpf_cnpj', 'data_nascimento', 'sexo', 'telefone'
 			),
 		}),
 		("Permissões", {

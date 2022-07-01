@@ -1,20 +1,44 @@
-import re
-from django.contrib.auth.models import AbstractBaseUser, UserManager, PermissionsMixin
+# import re
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, UserManager, PermissionsMixin
 from datetime import date
-from django.core import validators
+# from django.core import validators
 from django.core.mail import send_mail
 from django.db import models
-
 from geral.models import Endereco
 
 
-class Usuario(AbstractBaseUser, PermissionsMixin):
-	objects = UserManager()
-	USERNAME_FIELD = 'username'
-	REQUIRED_FIELDS = ['email', 'nome', 'cpf_cnpj']
+class UsuarioManager(BaseUserManager):
+	def create_user(self, email, nome, cpf_cnpj, password=None):
+		""" Create a new user profile """
+		if not email:
+			raise ValueError('User must have an email address')
+		
+		email = self.normalize_email(email)
+		user = self.model(email=email, nome=nome, cpf_cnpj=cpf_cnpj)
+		
+		user.set_password(password)
+		user.save(using=self._db)
+		
+		return user
 	
+	def create_superuser(self, email, nome, cpf_cnpj, password):
+		""" Create a new superuser profile """
+		user = self.create_user(email, nome, cpf_cnpj, password)
+		user.is_superuser = True
+		user.is_staff = True
+		
+		user.save(using=self._db)
+		
+		return user
+
+
+class Usuario(AbstractBaseUser, PermissionsMixin):
+	objects = UsuarioManager()
+	USERNAME_FIELD = 'email'
+	REQUIRED_FIELDS = ['nome', 'cpf_cnpj']
 	
 	# USUÁRIO
+	'''
 	username = models.CharField(
 		'Usuário', max_length=50, unique=True, validators=[
 			validators.RegexValidator(
@@ -26,7 +50,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 			)
 		], help_text='Um nome curto que será usado para identificá-lo de forma única na plataforma'
 	)
-	
+	'''
 	
 	# CONTATO
 	telefone = models.CharField('Telefone', max_length=20, null=True, blank=True)
@@ -60,7 +84,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 		verbose_name_plural = 'Usuários'
 	
 	def __str__(self):
-		return self.username or self.get_short_name()
+		return self.email or self.get_short_name()
 	
 	def get_full_name(self):
 		return str(self.nome)
@@ -75,12 +99,12 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 class UsuarioEndereco(Endereco):
 	usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
 	padrao = models.BooleanField(default=False)
-
+	
 	class Meta:
 		verbose_name = 'Endereço do usuário'
 		verbose_name_plural = 'Endereços dos usuários'
 		db_table = 'usuario_endereco'
-
+	
 	def __str__(self):
 		informacao = 'Usuário: ' + str(
 			self.usuario) + ' - Endereço: ' + self.rua + ', nº ' + self.numero + ', ' + self.bairro + ', CEP ' + self.cep
@@ -89,7 +113,7 @@ class UsuarioEndereco(Endereco):
 		if self.referencia:
 			informacao = informacao + ', ' + self.referencia
 		return informacao
-
+	
 	def save(self):
 		#  SÓ UM ENDEREÇO COMO PADRÃO
 		if self.padrao:

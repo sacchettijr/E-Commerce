@@ -1,8 +1,6 @@
 # APAGAR NA PRODUÇÃO
 geral/migrations/0001_initial.py
 usuario/migrations/0001_initial.py
-usuario/migrations/0002_usuario_data_cadastro_and_more.py
-usuario/migrations/0003_usuarioendereco.py
 
 # Python
 __pycache__/
