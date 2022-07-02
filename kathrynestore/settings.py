@@ -26,6 +26,7 @@ INSTALLED_APPS = [
 	'rest_framework',
 	'django_filters',
 	'guardian',
+	'widget_tweaks',
 	# APPS
 	'geral',
 	'usuario',
@@ -88,6 +89,9 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'usuario.Usuario'
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
+
 
 # djangorestframework
 REST_FRAMEWORK = {

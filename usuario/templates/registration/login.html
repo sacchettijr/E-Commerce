@@ -1,0 +1,19 @@
+{% extends 'base/base_login.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block login %}
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="id_username">E-Mail</label>
+        {{ form.username|add_class:"form-control" }}
+    </div>
+    <div class="form-group">
+        <label for="id_password">Senha:</label>
+        {{ form.password|add_class:"form-control" }}
+    </div>
+    <div class="d-grid gap-2 col-12 mx-auto mt-3">
+        <button type="submit" class="btn btn-primary">Entrar</button>
+    </div>
+</form>
+{% endblock login %}
