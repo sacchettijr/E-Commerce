@@ -5,7 +5,7 @@ from usuario.models import Usuario
 class UsuarioCreationForm(forms.UserCreationForm):
 	class Meta(forms.UserCreationForm.Meta):
 		model = Usuario
-		fields = '__all__'
+		fields = ['email', 'password1', 'password2', 'nome', 'cpf_cnpj', 'telefone', 'data_nascimento', 'sexo']
 		
 
 class UsuarioChangeForm(forms.UserChangeForm):

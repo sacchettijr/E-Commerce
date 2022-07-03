@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+from usuario.forms import UsuarioCreationForm
 
-# Create your views here.
+
+class UsuarioCadastro(CreateView):
+	template_name = 'registration/signup.html'
+	form_class = UsuarioCreationForm
+	success_url = reverse_lazy("login")
+
+	

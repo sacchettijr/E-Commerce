@@ -53,8 +53,8 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 	'''
 	
 	# CONTATO
-	telefone = models.CharField('Telefone', max_length=20, null=True, blank=True)
 	email = models.EmailField('E-Mail', unique=True)
+	telefone = models.CharField('Telefone', max_length=20, null=True, blank=True)
 	
 	# PESSOAL
 	nome = models.CharField('Nome', max_length=255, blank=True, null=True)
