@@ -52,9 +52,8 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 	)
 	'''
 	
-	# CONTATO
+	# LOGIN
 	email = models.EmailField('E-Mail', unique=True)
-	telefone = models.CharField('Telefone', max_length=20, null=True, blank=True)
 	
 	# PESSOAL
 	nome = models.CharField('Nome', max_length=255, blank=True, null=True)
@@ -66,6 +65,9 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 		("N", "Nenhuma das opções")
 	)
 	sexo = models.CharField('Sexo', max_length=1, null=True, blank=True, choices=SEXO_CHOICES, default='N')
+	
+	# CONTATO
+	telefone = models.CharField('Telefone', max_length=20, null=True, blank=True)
 	
 	# PERMISSÕES
 	is_staff = models.BooleanField('Equipe', default=False)

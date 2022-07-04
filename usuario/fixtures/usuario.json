@@ -1,0 +1,53 @@
+[
+  {
+    "model": "usuario.Usuario",
+    "pk": 1,
+    "fields": {
+      "email": "sacchettif13@gmail.com",
+      "nome": "Sergio Sacchetti Junior",
+      "cpf_cnpj": "011.085.742-97",
+      "data_nascimento": "1996-11-11",
+      "sexo": "M",
+      "telefone": "(69) 99303-3993",
+      "is_staff": 1,
+      "is_active": 1,
+      "is_superuser": 1,
+      "is_anonymous": 1,
+      "is_trusty": 1
+    }
+  },
+  {
+    "model": "usuario.Usuario",
+    "pk": 2,
+    "fields": {
+      "email": "rdnryan1213@gmail.com",
+      "nome": "Reidner Ryan dos Prazeres Carvalho",
+      "cpf_cnpj": "283.433.182-00",
+      "data_nascimento": "1995-01-01",
+      "sexo": "M",
+      "telefone": "(69) 99251-0956",
+      "is_staff": 1,
+      "is_active": 1,
+      "is_superuser": 1,
+      "is_anonymous": 1,
+      "is_trusty": 1
+    }
+  },
+  {
+    "model": "usuario.Usuario",
+    "pk": 3,
+    "fields": {
+      "email": "naellen.24@gmail.com",
+      "nome": "Naellen Kathryne Saraiva Lizieiro",
+      "cpf_cnpj": "565.452.342-26",
+      "data_nascimento": "1996-02-02",
+      "sexo": "F",
+      "telefone": "(69) 98409-0620",
+      "is_staff": 1,
+      "is_active": 1,
+      "is_superuser": 1,
+      "is_anonymous": 1,
+      "is_trusty": 1
+    }
+  }
+]
