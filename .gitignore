@@ -1,6 +1,7 @@
 # APAGAR NA PRODUÇÃO
 geral/migrations/0001_initial.py
 usuario/migrations/0001_initial.py
+produto/migrations/0001_initial.py
 
 # Python
 __pycache__/
