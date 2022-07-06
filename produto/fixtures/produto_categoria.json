@@ -1,6 +1,6 @@
 [
 	{
-		"model": "produto.Categoria",
+		"model": "produto.ProdutoCategoria",
 		"pk": 1,
 		"fields": {
 			"nome": "Informática",
@@ -11,7 +11,7 @@
 		}
 	},
 	{
-		"model": "produto.Categoria",
+		"model": "produto.ProdutoCategoria",
 		"pk": 2,
 		"fields": {
 			"nome": "Mercado",
@@ -22,7 +22,7 @@
 		}
 	},
 	{
-		"model": "produto.Categoria",
+		"model": "produto.ProdutoCategoria",
 		"pk": 3,
 		"fields": {
 			"nome": "Smartphones",
@@ -33,7 +33,7 @@
 		}
 	},
 	{
-		"model": "produto.Categoria",
+		"model": "produto.ProdutoCategoria",
 		"pk": 4,
 		"fields": {
 			"nome": "Eletrodomésticos",
@@ -44,7 +44,7 @@
 		}
 	},
 	{
-		"model": "produto.Categoria",
+		"model": "produto.ProdutoCategoria",
 		"pk": 5,
 		"fields": {
 			"nome": "Móveis",
@@ -55,7 +55,7 @@
 		}
 	},
 	{
-		"model": "produto.Categoria",
+		"model": "produto.ProdutoCategoria",
 		"pk": 6,
 		"fields": {
 			"nome": "Livros",
@@ -66,7 +66,7 @@
 		}
 	},
 	{
-		"model": "produto.Categoria",
+		"model": "produto.ProdutoCategoria",
 		"pk": 7,
 		"fields": {
 			"nome": "Beleza e Saúde",
@@ -77,7 +77,7 @@
 		}
 	},
 	{
-		"model": "produto.Categoria",
+		"model": "produto.ProdutoCategoria",
 		"pk": 8,
 		"fields": {
 			"nome": "Cozinha e Culinária",
@@ -88,7 +88,7 @@
 		}
 	},
 	{
-		"model": "produto.Categoria",
+		"model": "produto.ProdutoCategoria",
 		"pk": 9,
 		"fields": {
 			"nome": "Esporte",
@@ -99,7 +99,7 @@
 		}
 	},
 	{
-		"model": "produto.Categoria",
+		"model": "produto.ProdutoCategoria",
 		"pk": 10,
 		"fields": {
 			"nome": "Lazer",

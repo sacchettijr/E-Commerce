@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Categoria(models.Model):
+class ProdutoCategoria(models.Model):
 	ativo = models.BooleanField(verbose_name='Ativo', default=False)
 	nome = models.CharField(verbose_name='Nome', unique=True, max_length=255)
 	slug = models.SlugField(verbose_name='URL', unique=True)
@@ -28,7 +28,7 @@ class Produto(models.Model):
 	slug = models.SlugField('Identificador', max_length=100)
 	nome = models.CharField(max_length=255, unique=True)
 	descricao = models.CharField(max_length=2000, null=True, blank=True)
-	categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING, null=True, blank=True)
+	categoria = models.ForeignKey(ProdutoCategoria, on_delete=models.DO_NOTHING, null=True, blank=True)
 	
 	# VALOR
 	valor_unitario = models.DecimalField(max_digits=15, decimal_places=2)

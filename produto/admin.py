@@ -1,8 +1,8 @@
 from django.contrib import admin
-from produto.models import Categoria, Produto, ProdutoImagem
+from produto.models import ProdutoCategoria, Produto, ProdutoImagem
 
 
-@admin.register(Categoria)
+@admin.register(ProdutoCategoria)
 class CategoriaAdmin(admin.ModelAdmin):
 	pass
 
