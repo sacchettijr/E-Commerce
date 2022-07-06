@@ -1,3 +1,6 @@
+# ADICIONAR NA PRODUÇÃO
+# media/
+
 # APAGAR NA PRODUÇÃO
 geral/migrations/0001_initial.py
 usuario/migrations/0001_initial.py
@@ -13,7 +16,7 @@ local_settings.py
 # Banco de dados
 db.sqlite3
 db.sqlite3-journal
-media/
+
 
 # Editores
 .idea/
