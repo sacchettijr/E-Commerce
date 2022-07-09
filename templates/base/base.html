@@ -47,15 +47,21 @@
                 <li class="nav-item">
                     <a href="{% url 'index' %}" class="nav-link active">Início</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCategoria" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        Categoria
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Nome da categoria</a></li>
-                    </ul>
-                </li>
+                {% if categorias %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarCategoriaDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            Categorias
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarCategoriaDropdown">
+                            {% for categoria in categorias %}
+                                <a href="{% url 'publico_categoria' categoria.slug %}" class="dropdown-item">
+                                    {{ categoria.nome }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </li>
+                {% endif %}
             </ul>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="busca">
