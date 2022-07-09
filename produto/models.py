@@ -57,7 +57,7 @@ class ProdutoImagem(models.Model):
 	def __str__(self):
 		return str(self.pk) + ' - ' + str(self.produto)
 
-	def save(self):
+	def save(self, **kwargs):
 
 		#  SÓ UMA IMAGEM COMO PADRÃO
 		if self.padrao:
