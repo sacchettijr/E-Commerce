@@ -28,13 +28,14 @@
     <meta name="theme-color" content="#ffffff">
     <!--    //FAVICON     -->
 
-    <link rel="stylesheet" href="{% static 'bootstrap-5.2.0/bootstrap.min.css' %}">
-    <script src="{% static 'bootstrap-5.2.0/bootstrap.bundle.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'lib/bootstrap-5.2.0/bootstrap.min.css' %}">
+    <script src="{% static 'lib/bootstrap-5.2.0/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'lib/fontawesome-6.1.1/js/all.min.js' %}"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'index' %}">
+        <a class="navbar-brand" href="{% url 'publico_index' %}">
             <img src="{% static 'img/favicon/favicon-96x96.png' %}" width="30" height="30" alt="">
             Kathryne Store
         </a>
@@ -45,7 +46,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a href="{% url 'index' %}" class="nav-link active">Início</a>
+                    <a href="{% url 'publico_index' %}" class="nav-link active">Início</a>
                 </li>
                 {% if categorias %}
                     <li class="nav-item dropdown">
@@ -92,9 +93,9 @@
                     </li>
                 {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{% url 'publico_carrinho' %}">
                         Carrinho
-                        <i></i>
+                        <i class="fa-solid fa-cart-shopping"></i>
                     </a>
                 </li>
             </ul>
