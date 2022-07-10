@@ -1,5 +1,6 @@
 # ADICIONAR NA PRODUÇÃO
 # media/
+# dev_functions.py
 
 # APAGAR NA PRODUÇÃO
 geral/migrations/0001_initial.py
