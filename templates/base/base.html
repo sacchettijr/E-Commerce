@@ -31,6 +31,9 @@
     <link rel="stylesheet" href="{% static 'lib/bootstrap-5.2.0/bootstrap.min.css' %}">
     <script src="{% static 'lib/bootstrap-5.2.0/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'lib/fontawesome-6.1.1/js/all.min.js' %}"></script>
+    
+    {% block injectCSS %}{% endblock injectCSS %}
+    {% block injectJS %}{% endblock injectJS %}
 </head>
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
