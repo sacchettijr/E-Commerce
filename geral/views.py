@@ -1,6 +1,5 @@
 from django.views.generic import TemplateView
 from produto.models import ProdutoCategoria, Produto, ProdutoImagem
-from dev_functions import linha_quebra_10
 
 
 # VIEWS PUBLICAS

@@ -1,2 +1,2 @@
-def linha_quebra_10():
-	print("\n \n \n \n \n \n \n \n \n \n ")
+def linha_quebra_5():
+	print("\n \n \n \n \n")
