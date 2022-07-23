@@ -10,6 +10,7 @@ carrinho/migrations/0001_initial.py
 carrinho/migrations/0002_initial.py
 carrinho/migrations/0003_alter_carrinhoitem_unique_together.py
 carrinho/migrations/0004_remove_carrinho_data_atualizado_and_more.py
+carrinho/migrations/0002_alter_carrinhoitem_valor_unitario.py
 
 # Python
 __pycache__/

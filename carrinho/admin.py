@@ -1,7 +1,7 @@
 from django.contrib import admin
-from carrinho.models import Carrinho
+from carrinho.models import CarrinhoItem
 
 
-@admin.register(Carrinho)
-class Carrinho(admin.ModelAdmin):
+@admin.register(CarrinhoItem)
+class CarrinhoItemAdmin(admin.ModelAdmin):
 	pass
