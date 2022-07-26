@@ -108,6 +108,17 @@
         </div>
     </nav>
 </header>
+{% if messages %} 
+<div class="container">
+    {% block messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}"  role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endblock %}
+</div>
+{% endif %}
 {% block base %}
 
 {% endblock base %}
