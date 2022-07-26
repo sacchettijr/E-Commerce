@@ -3,6 +3,7 @@ import os
 from pathlib import Path
 from decouple import config
 from dj_database_url import parse as dburl
+# from produto.models import ProdutoCategoria
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
@@ -58,6 +59,7 @@ TEMPLATES = [
 				'django.template.context_processors.request',
 				'django.contrib.auth.context_processors.auth',
 				'django.contrib.messages.context_processors.messages',
+				'produto.context_processors.navbar_produto',
 			],
 		},
 	},

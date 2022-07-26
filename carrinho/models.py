@@ -51,3 +51,16 @@ class CarrinhoItem(models.Model):
 	
 	def __str__(self):
 		return 'ID: {} - Produto: {}'.format(str(self.pk), str(self.produto.nome))
+
+
+def post_save_carrinho_item(instance, **kwargs):
+
+	# Itens com quantidade 0 são removidos do carrinho
+	if instance.quantidade < 1:
+		instance.delete()
+
+models.signals.post_save.connect(
+	post_save_carrinho_item,
+	sender=CarrinhoItem,
+	dispatch_uid='post_save_carrinho_item'
+)

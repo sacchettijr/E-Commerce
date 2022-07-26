@@ -1,24 +1,21 @@
+from turtle import clear
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.forms import modelformset_factory
 from django.views.generic import TemplateView, RedirectView
-from produto.models import ProdutoCategoria, Produto
+from produto.models import ProdutoCategoria, Produto, ProdutoImagem
 from carrinho.models import CarrinhoItem
 from django.contrib import messages
-from dev_functions import linha_quebra_5  # TODO: apagar em produção
 
 
 class PublicoCarrinhoView(TemplateView):
 	template_name = 'publico/publico_carrinho.html'
 	
 	def get_formset(self, clear=False):
-		
 		CarrinhoItemFormSet = modelformset_factory(
 			CarrinhoItem, fields=('quantidade',), can_delete=True, extra=0
 		)
-		
 		chave_sessao = self.request.session.session_key
-		
 		if chave_sessao:
 			if clear:
 				formset = CarrinhoItemFormSet(
@@ -30,14 +27,32 @@ class PublicoCarrinhoView(TemplateView):
 					data=self.request.POST or None
 				)
 		else:
-			formset = CarrinhoItemFormSet(queryset=CarrinhoItem.objects.none())
-		
+			formset = CarrinhoItemFormSet(
+				queryset=CarrinhoItem.objects.none()
+			)
 		return formset
 	
-	def get_context_data(self, context=None, **kwargs):
+	def get_context_data(self, **kwargs):
+		print('\n'*20 + '_'*80 + '\n\n VIEW: PublicoCarrinhoView')
 		context = super(PublicoCarrinhoView, self).get_context_data(**kwargs)
 		context['formset'] = self.get_formset()
+		context['produtos_imagens'] = ProdutoImagem.objects.filter(padrao=True)
+
+		# Verifica se possui algum item já adicionado
+		if context['formset'].queryset:
+			context['existe_item'] = True
+		else:
+			context['existe_item'] = False
 		
+		print('\n\n')
+		print('PRINT >>> EXISTE ITEM NO CARRINHO? - {}'.format(context['existe_item']))
+		contador = 0
+		for item in context['formset'].queryset:
+			contador = contador + 1
+			print('PRINT >>> ITEM DO CARRINHO {} - Produto ({})'.format(contador, item.pk))
+		# print('\nPRINT >>> ' + str(context['produtos_imagens']))
+		print('\n\n')
+
 		return context
 	
 	def post(self, request, *args, **kwargs):
@@ -48,6 +63,12 @@ class PublicoCarrinhoView(TemplateView):
 			formset.save()
 			messages.success(request, 'Carrinho atualizado com sucesso.')
 			context['formset'] = self.get_formset(clear=True)
+			
+			# Verifica se possui algum item já adicionado
+			if context['formset'].queryset:
+				context['existe_item'] = True
+			else:
+				context['existe_item'] = False
 		
 		return self.render_to_response(context)
 
@@ -55,6 +76,7 @@ class PublicoCarrinhoView(TemplateView):
 class CreateCarrinhoItemView(RedirectView):
 	
 	def get_redirect_url(self, *args, **kwargs):		
+		print('\n'*20 + '_'*80 + '\n\n VIEW: CreateCarrinhoItemView')
 		produto = get_object_or_404(Produto, slug=self.kwargs['slug'])
 		
 		if self.request.session.session_key is None:

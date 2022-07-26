@@ -4,9 +4,9 @@
     <div class="container">
         {% if produto %}
             {% if produto.ativo %}
-                <div class="row">
+                <div class="row d-flex justify-content-between">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-3">
-                        <div class="container">
+                        <div class="container border">
                             {% if produtos_imagens %}
                                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                                     <div class="carousel-indicators">
@@ -41,7 +41,7 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-3">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mt-3">
                         <div class="container">
                             <table class="table table-bordered table-striped  bg-light">
                                 <tr>
@@ -57,6 +57,12 @@
                                     <td>{{ produto.categoria }}</td>
                                 </tr>
                             </table>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <a href="{% url 'publico_create_carrinho_item' produto.slug %}" class="btn btn-success btn-block my-1">
+                                Carrinho
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
