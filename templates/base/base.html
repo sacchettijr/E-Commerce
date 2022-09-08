@@ -1,10 +1,11 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kathryne Store</title>
 
@@ -35,113 +36,126 @@
     {% block injectCSS %}{% endblock injectCSS %}
     {% block injectJS %}{% endblock injectJS %}
 </head>
-<body>
-<header class="mb-3">
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'publico_index' %}">
-                <img src="{% static 'img/favicon/favicon-96x96.png' %}" width="30" height="30" alt="">
-                Kathryne Store
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a href="{% url 'publico_index' %}" class="nav-link active">Início</a>
-                    </li>
-                    {% if navbar_categorias %}
+
+<body class="d-flex flex-column min-vh-100">
+    <header>
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'publico_index' %}">
+                    <img src="{% static 'img/favicon/favicon-96x96.png' %}" width="30" height="30" alt="">
+                    Kathryne Store
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a href="{% url 'publico_index' %}" class="nav-link active">Início</a>
+                        </li>
+                        {% if navbar_categorias %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarCategoriaDropdown" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 Categorias
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarCategoriaDropdown">
                                 {% for categoria in navbar_categorias %}
-                                    <a href="{% url 'publico_categoria' categoria.slug %}" class="dropdown-item">
-                                        {{ categoria.nome }}
-                                    </a>
+                                <a href="{% url 'publico_categoria' categoria.slug %}" class="dropdown-item">
+                                    {{ categoria.nome }}
+                                </a>
                                 {% endfor %}
                             </div>
                         </li>
-                    {% endif %}
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="busca">
-                    <button class="btn btn-outline-success" type="submit">Buscar</button>
-                </form>
-                <ul class="navbar-nav navbar-right">
-                    {% if user.is_authenticated %}
+                        {% endif %}
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="busca">
+                        <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    </form>
+                    <ul class="navbar-nav navbar-right">
+                        {% if user.is_authenticated %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsuario" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                Minha conta
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ user.get_short_name }}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">Perfil</a></li>
-                                <li><a class="dropdown-item" href="#">Meus Pedidos</a></li>
+                                <li><a class="dropdown-item" href="{% url 'publico_minha_conta' %}">Perfil</a></li>
+                                <li><a class="dropdown-item" href="{% url 'publico_meus_pedidos' %}">Meus Pedidos</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>
                             </ul>
                         </li>
-                    {% else %}
+                        {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'login' %}">Login</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'signup' %}">Cadastrar</a>
                         </li>
-                    {% endif %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'publico_carrinho' %}">
-                            Carrinho
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </a>
-                    </li>
-                </ul>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'publico_carrinho' %}">
+                                Carrinho
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
+        </nav>
+    </header>
+
+
+    <main class="my-5">
+
+        <!-- CASO TENHA MENSAGENS PRO USUÁRIO -->
+        {% if messages %}
+        <div class="container">
+            {% block messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endblock %}
         </div>
-    </nav>
-</header>
-{% if messages %} 
-<div class="container">
-    {% block messages %}
-        {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}"  role="alert">
-            {{ message }}
+        {% endif %}
+        <!-- // CASO TENHA MENSAGENS PRO USUÁRIO -->
+
+        <!-- INSERT DAS PÁGINAS -->
+        {% block base %}
+
+        {% endblock base %}
+        <!-- // INSERT DAS PÁGINAS -->
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="bg-light border-top mt-auto">
+        <div class="container p-5">
+
+            <p class="text-center">
+                <strong>Desenvolvido por Sergio Sacchetti Junior</strong> <br>
+                <small>
+                    <strong>Email:</strong> dev.sacchetti@desenvolvedor.com <br>
+                    <strong>Telefone:</strong> (69) 99900-0000 <br>
+                </small>
+            </p>
+
+            <p class="text-center">
+                <small>
+                    Copyright © 2022 <br>
+                </small>
+            </p>
+
+
         </div>
-        {% endfor %}
-    {% endblock %}
-</div>
-{% endif %}
-{% block base %}
-
-{% endblock base %}
-
-<footer class="mt-5 bg-light border-top">
-    <div class="container p-5">
-
-        <p class="text-center">
-            <strong>Desenvolvido por Sergio Sacchetti Junior</strong> <br>
-            <small>
-                <strong>Email:</strong> dev.sacchetti@desenvolvedor.com <br>
-                <strong>Telefone:</strong> (69) 99900-0000 <br>
-            </small>
-        </p>
-
-        <p class="text-center">
-            <small>
-                Copyright © 2022 <br>
-            </small>
-        </p>
-
-
-    </div>
-</footer>
+    </footer>
 </body>
+
 </html>

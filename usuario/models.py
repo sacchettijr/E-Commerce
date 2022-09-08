@@ -57,6 +57,11 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 	
 	# PESSOAL
 	nome = models.CharField('Nome', max_length=255, blank=True, null=True)
+	TIPO_CHOICES = (
+		('F', 'Física '),
+		('J', 'Jurídica')
+	)
+	tipo = models.CharField('Tipo', max_length=1, choices=TIPO_CHOICES, default='M')
 	cpf_cnpj = models.CharField('CPF/CNPJ', max_length=18, unique=True)
 	data_nascimento = models.DateField('Data de Nascimento', default=date.today, null=True, blank=True)
 	SEXO_CHOICES = (
@@ -64,7 +69,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 		("F", "Feminino"),
 		("N", "Nenhuma das opções")
 	)
-	sexo = models.CharField('Sexo', max_length=1, null=True, blank=True, choices=SEXO_CHOICES, default='N')
+	sexo = models.CharField('Sexo', max_length=1, choices=SEXO_CHOICES, default='M')
 	
 	# CONTATO
 	telefone = models.CharField('Telefone', max_length=20, null=True, blank=True)

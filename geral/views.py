@@ -38,3 +38,7 @@ class PublicoProdutoDetalheView(TemplateView):
 		self.kwargs['produtos_imagens'] = ProdutoImagem.objects.filter(produto=produto.pk, ativo=True)
 		
 		return self.kwargs
+
+publico_index = PublicoIndex.as_view()
+publico_categoria = PublicoCategoriaView.as_view()
+publico_produto = PublicoProdutoDetalheView.as_view()

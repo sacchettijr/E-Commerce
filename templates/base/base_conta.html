@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block base %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xxl-2 col-lg-3 col-md-12 col-sm-12 col-12">
+            <div class="list-group">
+                
+                <a href="{% url 'publico_minha_conta' %}"
+                    class="list-group-item {% if conta_index %} active {% endif %}">
+                    Início
+                </a>
+                
+                <a href="{% url 'publico_minha_conta_atualizar_senha' %}"
+                    class="list-group-item {% if atualizar_senha %} active {% endif %}">
+                    Mudar senha
+                </a>
+                
+                <a href="{% url 'publico_minha_conta_editar' %}"
+                    class="list-group-item {% if atualizar_dados %} active {% endif %}">
+                    Atualizar dados
+                </a>
+
+                <a href="{% url 'publico_minha_conta_editar_endereco' %}"
+                    class="list-group-item {% if atualizar_endereco %} active {% endif %}">
+                    Atualizar endereços
+                </a>
+
+                <a href="{% url 'publico_meus_pedidos' %}"
+                    class="list-group-item {% if meus_pedidos %} active {% endif %}">
+                    Meus pedidos
+                </a>
+
+            </div>
+        </div>
+        <div class="col-xxl-10 col-lg-9 col-md-12 col-sm-12 col-12">
+            {% block baseConta %}
+
+            {% endblock baseConta %}
+        </div>
+    </div>
+</div>
+{% endblock base %}

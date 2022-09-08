@@ -1,0 +1,55 @@
+{% extends 'base/base_conta.html' %}
+{% load static %}
+
+{% block baseConta %}
+<div class="row">
+    <div class="col-12">
+        <h3 class="text-left">Seja bem-vindo {{ user.get_short_name }}!</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        
+        <div class="mb-3">
+            <label for="id_email">E-Mail</label>
+            <input type="text" class="form-control" readonly id="id_email" value="{{ user.email }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="id_nome">Nome completo:</label>
+            <input type="text" class="form-control" readonly id="id_nome" value="{{ user.nome }}">
+        </div>
+
+        <div class="mb-3">
+            <label id="id_cpf_cnpj_label" for="id_cpf_cnpj">CPF/CNPJ:</label>
+            <input type="text" class="form-control" readonly id="id_cpf_cnpj" value="{{ user.cpf_cnpj }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="id_data_nascimento">Data de nascimento:</label>
+            <input type="text" class="form-control" readonly id="id_data_nascimento" value="{{ user.data_nascimento }}">
+        </div>
+
+        <div class="mb-3">
+            <label id="id_id_sexo_label" for="id_sexo">Sexo:</label>
+            <input type="text" class="form-control" readonly id="id_sexo" value="{{ user.sexo }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="id_telefone">Telefone:</label>
+            <input type="text" class="form-control" readonly id="id_telefone" value="{{ user.telefone }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="id_data_cadastro">Data cadastro:</label>
+            <input type="text" class="form-control" readonly id="id_data_cadastro" value="{{ user.data_cadastro }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="id_data_ultima_modificacao">Última modificação</label>
+            <input type="text" class="form-control" readonly id="id_data_ultima_modificacao" value="{{ user.data_ultima_modificacao }}">
+        </div>
+
+    </div>
+</div>
+{% endblock baseConta %}

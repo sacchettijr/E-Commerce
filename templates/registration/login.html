@@ -1,6 +1,11 @@
 {% extends 'base/base_login.html' %}
 {% load static %}
 {% load widget_tweaks %}
+
+{% block login-title %}
+LOGIN                
+{% endblock login-title %}
+
 {% block login %}
 <form method="post">
     {% csrf_token %}

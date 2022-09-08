@@ -1,8 +1,12 @@
 {% extends 'base/base_login.html' %}
 {% load static %}
 {% load widget_tweaks %}
+
+{% block login-title %}
+CADASTRO DE USUÁRIO
+{% endblock login-title %}
+
 {% block login %}
-    <h3 class="text-center">Cadastro de usuário</h3>
     <form method="post">
         {% csrf_token %}
         <div class="form-group">

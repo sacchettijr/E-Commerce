@@ -92,3 +92,7 @@ class CreateCarrinhoItemView(RedirectView):
 			messages.success(self.request, 'Produto atualizado com sucesso.')
 		
 		return reverse('publico_carrinho')
+
+
+publico_carrinho = PublicoCarrinhoView.as_view()
+publico_carrinho_item = CreateCarrinhoItemView.as_view()

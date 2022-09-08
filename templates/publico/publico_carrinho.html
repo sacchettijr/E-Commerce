@@ -31,70 +31,86 @@
 
 				<tbody>
 					{% if existe_item %}
-						{% for form in formset %}
-							<tr>
+					{% for form in formset %}
+					<tr>
 
-								<!--  DESCRIÇÃO E IMAGEM -->
-								<td class="p-2">
-									<div class="media align-items-center">
-										<!-- produto_imagem.imagem.url -->
+						<!--  DESCRIÇÃO E IMAGEM -->
+						<td class="p-2">
+							<div class="media align-items-center">
+								<!-- produto_imagem.imagem.url -->
 
-										<div class="row">
-											<div class="col-12 col-xl-3">
-												{% for produto_imagem in produtos_imagens %}
-												{% if form.instance.produto.pk == produto_imagem.produto.pk %}
-												<img src="{{ produto_imagem.imagem.url }}"
-													class="d-block ui-w-40 ui-bordered mr-4 border p-1"
-													alt="Imagem da categoria {{ form.instance.produto.pk }}">
-												{% endif %}
-												{% endfor %}
-											</div>
-											<div class="col-12 col-xl-6">
-												<div class="media-body">
-													<a href="{% url 'publico_produto' form.instance.produto.slug %}"
-														class="d-block text-dark">
-														<small>
-															<b>{{ form.instance.produto.nome }}</b>
-														</small>
-													</a>
-												</div>
-											</div>
+								<div class="row">
+									<div class="col-12 col-xl-3">
+										{% for produto_imagem in produtos_imagens %}
+										{% if form.instance.produto.pk == produto_imagem.produto.pk %}
+										<img src="{{ produto_imagem.imagem.url }}"
+											class="d-block ui-w-40 ui-bordered mr-4 border p-1"
+											alt="Imagem da categoria {{ form.instance.produto.pk }}">
+										{% endif %}
+										{% endfor %}
+									</div>
+									<div class="col-12 col-xl-6">
+										<div class="media-body">
+											<a href="{% url 'publico_produto' form.instance.produto.slug %}"
+												class="d-block text-dark">
+												<small>
+													<b>{{ form.instance.produto.nome }}</b>
+												</small>
+											</a>
 										</div>
 									</div>
-								</td>
+								</div>
+							</div>
+						</td>
 
-								<!-- VALOR UNITÁRIO -->
-								<td class="text-right fw-semibold align-middle p-2">
-									R${{ form.instance.valor_unitario|floatformat:"2" }}
-								</td>
+						<script>
+							// quantidade = id_form-0-quantidade
+							// valor_unitario = valor_unitario_produto
+							// total_item = valor_total_produto
 
-								<!--  QUANTIDADE -->
-								<td class="align-middle p-2">
-									{% render_field form.quantidade class='form-control text-center' %}
-								</td>
+							// valor_total_desconto
+							// valor_frete
+							// valor_total_final
+							let quantidade 		= document.getElementById("#id_form-0-quantidade");
+							let valor_unitario 	= document.getElementById("#valor_unitario_produto");
+							let total_item 		= document.getElementById("#valor_total_produto");
 
-								<!-- # VALOR TOTAL DO ITEM -->
-								<td class="text-right fw-semibold align-middle p-2">
-									R$155555515,10
-								</td>
+							console.log(quantidade)
+							console.log(valor_unitario)
+							console.log(total_item)
+						</script>
+						<!-- VALOR UNITÁRIO -->
+						<td class="text-right fw-semibold align-middle p-2">
+							R$ <span id="valor_unitario_produto">{{ form.instance.valor_unitario|floatformat:"2" }}</span>
+						</td>
 
-								<!--  REMOVER ITEM -->
-								<td class="text-center align-middle px-0">
-									<button value="on" type="submit" class="btn btn-danger btn-sm"
-										name="{{ form.DELETE.html_name }}">
-										<i class="fa-solid fa-trash"></i>
-									</button>
-									{{ form.id }}
-								</td>
+						<!--  QUANTIDADE -->
+						<td class="align-middle p-2">
+							<span id="valor_unitario_produto">{% render_field form.quantidade class='form-control text-center' %}</span>
+						</td>
 
-							</tr>
-						{% endfor %}
+						<!-- # VALOR TOTAL DO ITEM -->
+						<td class="text-right fw-semibold align-middle p-2">
+							<span id="valor_total_produto">R$155555515,10</span>
+						</td>
+
+						<!--  REMOVER ITEM -->
+						<td class="text-center align-middle px-0">
+							<button value="on" type="submit" class="btn btn-danger btn-sm"
+								name="{{ form.DELETE.html_name }}">
+								<i class="fa-solid fa-trash"></i>
+							</button>
+							{{ form.id }}
+						</td>
+
+					</tr>
+					{% endfor %}
 					{% else %}
-						<tr>
-							<td colspan="5">
-								<h3 class="text-center">Não há produtos no carrinho.</h3>
-							</td>
-						</tr>
+					<tr>
+						<td colspan="5">
+							<h3 class="text-center">Não há produtos no carrinho.</h3>
+						</td>
+					</tr>
 					{% endif %}
 				</tbody>
 			</table>
@@ -120,15 +136,33 @@
 				<div class="d-flex">
 					<div class="text-right me-4 ">
 						<label class="text-muted fw-normal m-0">Desconto</label>
-						<div class="text-large"><strong>R$20</strong></div>
+						<div class="text-large">
+							<strong>
+								<span id="valor_total_desconto">
+									R$20
+								</span>
+							</strong>
+						</div>
 					</div>
 					<div class="text-right me-4 ">
 						<label class="text-muted fw-normal m-0">Frete</label>
-						<div class="text-large"><strong>R$20</strong></div>
+						<div class="text-large">
+							<strong>
+								<span id="valor_frete">
+									R$20
+								</span>
+							</strong>
+						</div>
 					</div>
 					<div class="text-right me-4">
 						<label class="text-muted fw-normal m-0">Preço total</label>
-						<div class="text-large"><strong>R$1164.65</strong></div>
+						<div class="text-large">
+							<strong>
+								<span id="valor_total_final">
+									R$1164.65
+								</span>
+							</strong>
+						</div>
 					</div>
 				</div>
 
